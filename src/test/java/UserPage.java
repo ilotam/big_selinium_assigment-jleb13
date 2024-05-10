@@ -1,3 +1,4 @@
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -28,15 +29,21 @@ public class UserPage extends PageBase{
         waitAndReturnElement(ADDRESS_INPUT).sendKeys("asd");
         logger.info("Entered ADDRESS_INPUT");
         waitUntilClickableAndReturnElement(ADDRESS_SUBMIT).click();
-        logger.info("Entered ADDRESS_SUBMIT");
+        logger.info("Sent ADDRESS");
     }
 
     public void logoutValidUser() {
-        try {
-            WebElement submitButton  = waitUntilClickableAndReturnElement(LOGOUT_BUTTON);
-            submitButton.click();
-        } catch (NoSuchElementException e) {
-            System.out.println("Button click failed: " + e.getMessage());
-        }
+
+        WebElement submitButton  = waitUntilClickableAndReturnElement(LOGOUT_BUTTON);
+        submitButton.click();
+        logger.info("User logged out.");
+    }
+
+    public void clickOnIntroduction() throws InterruptedException {
+        isLoginSuccessful();
+        driver.findElement(BODY).sendKeys(Keys.CONTROL, Keys.END);
+        Thread.sleep(100);
+        waitUntilClickableAndReturnElement(INTRODUCTION_BUTTON).click();
+        logger.info("INTRODUCTION_BUTTON clicked");
     }
 }
