@@ -23,6 +23,7 @@ public class PageBase {
     protected static final By INPUT_TYPE_EMAIL = By.cssSelector("input[type='email']");
     protected static final By INPUT_TYPE_PASSWORD = By.cssSelector("input[type='password']");
     protected static final By LOGIN_SUBMIT = By.id("login-submit");
+    protected static final By REGISTRATION_SUBMIT = By.id("reg-submit");
     protected static final By DELIVERY_SETTINGS = By.cssSelector("a.sub-menu-item[data-menu-content-id='settings-delivery']");
     protected static final By NAME_INPUT = By.cssSelector("input[name='name']");
     protected static final By CITY_INPUT = By.cssSelector("input[name='city']");
@@ -36,6 +37,7 @@ public class PageBase {
     protected static final By INTRODUCTION_BUTTON = By.xpath("//a[text()='Bemutatkozás']");
     protected static final By OUR_CONTACTS_BUTTON = By.xpath("//a[text()='Elérhetőségeink']");
     protected static final By OUR_REWARDS_BUTTON = By.xpath("//a[text()='Díjaink és elismeréseink']");
+    protected static final By REGISTRATION_BUTTON = By.xpath("//a[@href='https://www.arukereso.hu/regisztracio/']");
     protected static final By OUR_REWARDS =By.xpath("//div[contains(@class, 'st-1') and .//span[contains(text(), 'Superbrands')]]");
     protected static final By OUR_CONTACTS_DIV = By.xpath("//p[text()='Elérhetőségeink']");
     protected static final By MISSION_BUTTON = By.xpath("//div[contains(@class, 'st-1') and .//span[contains(text(), 'Az Árukereső.hu küldetése')]]");
