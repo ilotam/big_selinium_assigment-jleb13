@@ -9,6 +9,8 @@ public class LoginPage extends PageBase{
 
     public void loginValidUser(String email, String password) {
         try {
+            logger.info(email);
+            logger.info(password);
             waitAndReturnElement(INPUT_TYPE_EMAIL).sendKeys(email);
             waitAndReturnElement(INPUT_TYPE_PASSWORD).sendKeys(password);
             waitUntilClickableAndReturnElement(LOGIN_SUBMIT).click();
@@ -17,11 +19,6 @@ public class LoginPage extends PageBase{
         }
     }
 
-    public void registerNewUser(String email, String password){
-        waitUntilClickableAndReturnElement(REGISTRATION_BUTTON).click();
-        waitAndReturnElement(INPUT_TYPE_EMAIL).sendKeys(email);
-        waitAndReturnElement(INPUT_TYPE_PASSWORD).sendKeys(password);
-        waitUntilClickableAndReturnElement(REGISTRATION_SUBMIT).click();
-    }
+
 
 }

@@ -11,9 +11,10 @@ public class UserPageTests extends TestBase{
     }
 
     @Test
-    public void testFillDeliveryAddressForm() {
-        loginPage.loginValidUser(EMAIL, PASSWORD);
+    public void testFillDeliveryAddressForm() throws Exception {
+        loginPage.registerNewUser();
         userPage.fillDeliveryAddressForm();
+        Thread.sleep(100);
         Assert.assertTrue(userPage.isFirstAddressSaveSuccessful());
     }
 

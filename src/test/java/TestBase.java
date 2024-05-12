@@ -8,7 +8,7 @@ import java.net.URL;
 public class TestBase {
 
     protected WebDriver driver;
-    protected LoginPage loginPage;
+    protected static LoginPage loginPage;
     protected UserPage userPage;
     protected Universal universal;
     protected IntroductionPage introductionPage;
@@ -30,4 +30,5 @@ public class TestBase {
             driver.quit();
         }
     }
+
 }

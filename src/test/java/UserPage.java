@@ -1,5 +1,4 @@
 import org.openqa.selenium.Keys;
-import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
@@ -10,10 +9,16 @@ public class UserPage extends PageBase{
         this.driver.get(baseUrl);
     }
 
-    public void fillDeliveryAddressForm(){
-        System.out.println(MY_DATA_SHEET);
-        logger.info("before MY_DATA_SHEET");
-        waitUntilClickableAndReturnElement(MY_DATA_SHEET).click();
+    public void fillDeliveryAddressForm() throws InterruptedException {
+        if(!areAccountSettingsAgreementsSaved()){
+            fillSettingsOfProfile();
+            Thread.sleep(100);
+        }else{
+            System.out.println(MY_DATA_SHEET);
+            logger.info("before MY_DATA_SHEET");
+            waitUntilClickableAndReturnElement(MY_DATA_SHEET).click();
+        }
+
         System.out.println(MY_DATA_SHEET);
         logger.info("Entered MY_DATA_SHEET");
         waitUntilClickableAndReturnElement(DELIVERY_SETTINGS).click();
@@ -40,10 +45,22 @@ public class UserPage extends PageBase{
     }
 
     public void clickOnIntroduction() throws InterruptedException {
-        isLoginSuccessful();
+        //isLoginSuccessful();
         driver.findElement(BODY).sendKeys(Keys.CONTROL, Keys.END);
         Thread.sleep(100);
         waitUntilClickableAndReturnElement(INTRODUCTION_BUTTON).click();
         logger.info("INTRODUCTION_BUTTON clicked");
+    }
+
+    public void fillSettingsOfProfile(){
+
+        waitUntilClickableAndReturnElement(MY_DATA_SHEET).click();
+        logger.info("MY_DATA_SHEET clicked");
+        waitUntilClickableAndReturnElement(ACCOUNT_SETTINGS_BUTTON).click();
+        logger.info("ACCOUNT_SETTINGS_BUTTON clicked");
+        waitUntilClickableAndReturnElement(CHECK_ALL_BUTTON).click();
+        logger.info("CHECK_ALL_BUTTON clicked");
+        waitUntilClickableAndReturnElement(SAVE_BUTTON).click();
+        logger.info("SAVE_BUTTON clicked");
     }
 }

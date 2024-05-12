@@ -13,12 +13,7 @@ public class RegistrationTests extends TestBase{
 
     @Test
     public void testRegistration() throws Exception {
-        loginPage.registerNewUser("asdASDTESTasd123456@restmail.net", "asd123ASD");
-        Thread.sleep(10000);
-        String registrationUrl = EmailService.fetchLatestRegistrationUrl("asdASDTESTasd123456@restmail.net");
-        if (registrationUrl != null) {
-            driver.get(registrationUrl);
-        }
+        loginPage.registerNewUser();
         loginPage.isLoginSuccessful();
     }
 

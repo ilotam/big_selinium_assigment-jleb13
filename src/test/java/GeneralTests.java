@@ -13,8 +13,8 @@ public class GeneralTests extends TestBase{
     }
 
     @Test
-    public void testIntroductionPageDisplayedAfterLogin() throws InterruptedException {
-        loginPage.loginValidUser(EMAIL, PASSWORD);
+    public void testIntroductionPageDisplayedAfterLogin() throws Exception {
+        loginPage.registerNewUser();
         userPage.clickOnIntroduction();
         introductionPage.clickOnMissionDescription();
         Assert.assertTrue(introductionPage.isMissionBlockDisplayed());
@@ -32,6 +32,13 @@ public class GeneralTests extends TestBase{
         testMap.put(PageBase.OUR_CONTACTS_BUTTON, PageBase.OUR_CONTACTS_DIV);
         testMap.put(PageBase.OUR_REWARDS_BUTTON, PageBase.OUR_REWARDS);
         Assert.assertTrue(PageBase.clickAndVerifyElements(testMap));
+    }
+
+    @Test
+    public void testAccountSettingsAgreementsChecked() throws Exception {
+        loginPage.registerNewUser();
+        userPage.fillSettingsOfProfile();
+        Assert.assertTrue(userPage.areAccountSettingsAgreementsSaved());
     }
 
     @After
