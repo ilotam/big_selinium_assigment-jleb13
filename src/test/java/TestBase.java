@@ -10,7 +10,6 @@ public class TestBase {
     protected WebDriver driver;
     protected static LoginPage loginPage;
     protected UserPage userPage;
-    protected Universal universal;
     protected IntroductionPage introductionPage;
     protected final String EMAIL = "ilosvaytomi@gmail.com";
     protected final String PASSWORD = "asd123ASD";
@@ -22,7 +21,6 @@ public class TestBase {
         loginPage = new LoginPage(this.driver);
         userPage = new UserPage(this.driver);
         introductionPage = new IntroductionPage(this.driver);
-        universal = new Universal(this.driver);
     }
 
     public void quitDriver() {

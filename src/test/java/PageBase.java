@@ -1,7 +1,6 @@
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -20,7 +19,7 @@ public class PageBase {
     protected String baseUrl = "https://www.arukereso.hu/belepes/";
     protected static WebDriverWait wait;
     protected static WebDriver driver;
-    JavascriptExecutor jse;
+    protected static JavascriptExecutor js ;
     protected static final By AFTER_LOGOUT = By.cssSelector("a[href*='muszaki-cikk']");
     protected static final By INPUT_TYPE_EMAIL = By.cssSelector("input[type='email']");
     protected static final By INPUT_TYPE_PASSWORD = By.cssSelector("input[type='password']");
@@ -52,8 +51,8 @@ public class PageBase {
     protected static final Logger logger = Logger.getLogger(TestBase.class.getName());
     public PageBase(WebDriver driver) {
         PageBase.driver = driver;
-        PageBase.driver.get(baseUrl);
-        jse = (JavascriptExecutor)driver;
+        driver.get(baseUrl);
+        js = (JavascriptExecutor) driver;
         wait = new WebDriverWait(driver, 30);
         PageFactory.initElements(driver, this);
         setupLogger();
@@ -101,7 +100,7 @@ public class PageBase {
 
     public static void waitUntilPageScrolledDownAndItemIsClickable(By elementLocator) throws InterruptedException {
         WebElement element = waitUntilClickableAndReturnElement(elementLocator);
-        driver.findElement(BODY).sendKeys(Keys.CONTROL, Keys.END);
+        js.executeScript("window.scrollTo(0, document.body.scrollHeight);");
         Thread.sleep(1000);
         element.click();
         logger.info(elementLocator + " clicked");
@@ -120,7 +119,6 @@ public class PageBase {
         } catch (NoSuchElementException e){
             return false;
         }
-
     }
 
     public boolean isFirstAddressSaveSuccessful(){
@@ -133,10 +131,8 @@ public class PageBase {
     public void registerNewUser() throws Exception {
         String email = RandomStringUtils.random(10, true, true) + "@restmail.net";
         String password = RandomStringUtils.random(10, true, true) + "A1";
-
         logger.info(email);
         logger.info(password);
-
         waitUntilClickableAndReturnElement(REGISTRATION_BUTTON).click();
         waitAndReturnElement(INPUT_TYPE_EMAIL).sendKeys(email);
         waitAndReturnElement(INPUT_TYPE_PASSWORD).sendKeys(password);

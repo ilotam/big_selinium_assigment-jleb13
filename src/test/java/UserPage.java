@@ -6,7 +6,7 @@ public class UserPage extends PageBase{
 
     public UserPage(WebDriver driver) {
         super(driver);
-        this.driver.get(baseUrl);
+        PageBase.driver.get(baseUrl);
     }
 
     public void fillDeliveryAddressForm() throws InterruptedException {

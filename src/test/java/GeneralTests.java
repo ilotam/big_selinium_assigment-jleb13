@@ -38,6 +38,7 @@ public class GeneralTests extends TestBase{
     public void testAccountSettingsAgreementsChecked() throws Exception {
         loginPage.registerNewUser();
         userPage.fillSettingsOfProfile();
+        Thread.sleep(1000);
         Assert.assertTrue(userPage.areAccountSettingsAgreementsSaved());
     }
 

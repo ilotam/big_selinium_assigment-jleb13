@@ -18,7 +18,4 @@ public class LoginPage extends PageBase{
             System.out.println("Button click failed: " + e.getMessage());
         }
     }
-
-
-
 }
